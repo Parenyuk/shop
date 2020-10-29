@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Home} from './pages/Home/Home';
 import {Route, Switch} from 'react-router';
@@ -9,10 +9,13 @@ import {makeStyles, Theme} from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import {useSelector} from 'react-redux';
 import {AppStateType} from './redux/store';
+import { TabScrollButton } from '@material-ui/core';
+import {ScrollToTop} from './common/utils/ScrollToTop';
 
 export const useAppStyles = makeStyles((theme: Theme) => ({
   toolbar: {
     backgroundColor: theme.palette.primary.main,
+    position: 'relative',
   },
   linkButtonToHome: {
     textDecoration: 'none'
@@ -21,7 +24,7 @@ export const useAppStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.secondary.main,
     marginLeft: '90%',
     textDecoration: 'none'
-  }
+  },
 }))
 
 function App() {
@@ -29,8 +32,10 @@ function App() {
   const classes = useAppStyles();
   const totalPriceProduct = useSelector<AppStateType, number>(state => state.cartPage.totalPriceProduct)
 
+
+
   return (
-      <div>
+      <div >
         <AppBar position='static' className={classes.toolbar} >
           <Toolbar>
             <Link to='/home' className={classes.linkButtonToHome} >
@@ -48,8 +53,11 @@ function App() {
           <Route exact path={'/home'} component={Home} />
           <Route path={'/cart'} component={Cart}  />
         </Switch>
+      <ScrollToTop showBelow={250} />
       </div>
   );
 }
 
 export default App;
+
+
