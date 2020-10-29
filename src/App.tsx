@@ -9,7 +9,6 @@ import {makeStyles, Theme} from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import {useSelector} from 'react-redux';
 import {AppStateType} from './redux/store';
-import { TabScrollButton } from '@material-ui/core';
 import {ScrollToTop} from './common/utils/ScrollToTop';
 
 export const useAppStyles = makeStyles((theme: Theme) => ({
@@ -25,6 +24,10 @@ export const useAppStyles = makeStyles((theme: Theme) => ({
     marginLeft: '90%',
     textDecoration: 'none'
   },
+  animated: {
+    transitionProperty: 'backgroundColor',
+    transitionDuration: '3s',
+  }
 }))
 
 function App() {
@@ -38,7 +41,7 @@ function App() {
       <div >
         <AppBar position='static' className={classes.toolbar} >
           <Toolbar>
-            <Link to='/home' className={classes.linkButtonToHome} >
+            <Link to='/' className={classes.linkButtonToHome} >
               <IconButton>
                 <HomeIcon fontSize={'large'} />
               </IconButton>
@@ -50,8 +53,8 @@ function App() {
           </Toolbar>
         </AppBar>
         <Switch>
-          <Route exact path={'/home'} component={Home} />
-          <Route path={'/cart'} component={Cart}  />
+          <Route exact path={'/'} component={Home} />
+          <Route  path={'/cart'} component={Cart}  />
         </Switch>
       <ScrollToTop showBelow={250} />
       </div>
